@@ -97,8 +97,8 @@ volatile enum alexa_mode alexa_current_mode = ALEXA_NORMAL_MODE;
 
 #if 1
 struct alexa_key support_keys [FUNC_LAST_ID] ={
-	{143/*KEY_WAKEUP*/, 0, 1, enter_wakeup_mode,},
-	{143/*KEY_WIFI_MODE*/, 1, 1, enter_wifi_bt_mode_with_onekey},
+	{207/*KEY_WAKEUP*/, 0, 1, enter_wakeup_mode,},
+	{207/*KEY_WIFI_MODE*/, 1, 1, enter_wifi_bt_mode_with_onekey},
 };
 #else
 struct alexa_key support_keys [] ={
