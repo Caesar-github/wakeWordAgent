@@ -36,23 +36,15 @@ void rkSoftAP::showWifiState(InfoLed* infoled,int mode) {
     int led_blink_time,end_mode;
     if(infoled) {
         if(mode == MODE_WIFI_ERR) {
-            led_blink_time = 6;
             end_mode = MODE_WIFI_CONNECT;
-            for(int i=0;i<led_blink_time;i++) {
-                infoled->led_open(mode, 0);
-                usleep(1000*1000);
-            }
+            infoled->led_open(mode, 0);
+            sleep(led_blink_time);
             infoled->led_open(end_mode, 0);
             system("aplay /data/mode_sound/wifi_mode.wav");//back to wakeup mode
         } else {
             led_blink_time = 9;
             end_mode = MODE_NORMAL;
-            for(int i=0;i<led_blink_time;i++) {
-                infoled->led_open(MODE_OFF, 0);
-                usleep(1000*1000);
-                infoled->led_open(mode, 0);
-                usleep(500*1000);
-            }
+            sleep(led_blink_time);
             infoled->led_open(end_mode, 0);
             system("aplay /data/mode_sound/wakeup_mode.wav");//back to wakeup mode
 
@@ -79,6 +71,7 @@ void rkSoftAP::setWifi(bool state,char* wifiName) {
     if(state) {
         char APcmd[128];
         sprintf(APcmd,"softapDemo Rockchip-Echo-%s",wifiName);
+        system("updater -g -d &");
         memcpy(m_wifiName,wifiName,6);
         system(APcmd);
         system("rm /data/cfg/softap");
@@ -87,6 +80,7 @@ void rkSoftAP::setWifi(bool state,char* wifiName) {
         m_wifiState.notify_one();
     } else {
         system("rm /data/cfg/softap");
+        system("updater stop");
         system("softapDemo stop");
         m_cwifistate = WifiState::IDLE;
         std::lock_guard<std::mutex> lock(m_mtx);

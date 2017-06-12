@@ -60,6 +60,32 @@ IPCInterface::Command IPCInterface::intToCommand(int intCommand) {
       return STOP_AMAZON_RECORD;
     case START_AMAZON_PLAY:
       return START_AMAZON_PLAY;
+    case AMAZON_SETVOLUME_0 :
+      return AMAZON_SETVOLUME_0;
+    case AMAZON_SETVOLUME_1 :
+      return AMAZON_SETVOLUME_1;
+    case AMAZON_SETVOLUME_2 :
+      return AMAZON_SETVOLUME_2;
+    case AMAZON_SETVOLUME_3 :
+      return AMAZON_SETVOLUME_3;
+    case AMAZON_SETVOLUME_4 :
+      return AMAZON_SETVOLUME_4;
+    case AMAZON_SETVOLUME_5 :
+      return AMAZON_SETVOLUME_5;
+    case AMAZON_SETVOLUME_6 :
+      return AMAZON_SETVOLUME_6;
+    case AMAZON_SETVOLUME_7 :
+      return AMAZON_SETVOLUME_7;
+    case AMAZON_SETVOLUME_8 :
+      return AMAZON_SETVOLUME_8;
+    case AMAZON_SETVOLUME_9 :
+      return AMAZON_SETVOLUME_9;
+    case AMAZON_SETVOLUME_10 :
+      return AMAZON_SETVOLUME_10;
+    case AMAZON_SETVOLUME_11 :
+      return AMAZON_SETVOLUME_11;
+    case AMAZON_SETVOLUME_12 :
+      return AMAZON_SETVOLUME_12;
     default:
       return UNKNOWN;
   }

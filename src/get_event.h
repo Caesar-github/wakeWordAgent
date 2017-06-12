@@ -58,6 +58,7 @@ int start_event_thread(void);
 int event_process(void);
 void alexa_volume_set_step(int vol);
 int alexa_volume_get_step(void);
+void alexa_volume_set_mute();
 int codec_set_vol(int vol_step);
 enum alexa_mode alexa_get_mode();
 void alexa_set_mode(enum alexa_mode mode);

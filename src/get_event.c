@@ -393,6 +393,11 @@ static int find_event_dev(int event_type)
 	}
 	if (is_volume_changed) {
 		ret = FUNC_VOLUME_CHANGE;
+		//if current_vol_step < 0 means we need to mute the speaker
+		if (current_vol_step < 0) {
+
+		}
+
 		//control the codec volume output
 		if (codec_set_vol(volume_controls[current_vol_step].codec_vol)) {
 			printf("%s,codec set volume failed\n",__func__);
@@ -430,6 +435,11 @@ int alexa_volume_get_step(void)
 {
 	int vol_step;
 	pthread_mutex_lock(&ev_mutex);
+	//current_vol_step will be <0 only when alexa mute the speaker
+	if (current_vol_step < 0) {
+		pthread_mutex_unlock(&ev_mutex);
+		return 0;
+	}
 	vol_step = volume_controls[current_vol_step].vol_step;
 	printf("current alexa volume is: %d,codec vol is %d, step value is : %d\n",volume_controls[current_vol_step].alex_vol,
 			volume_controls[current_vol_step].codec_vol, vol_step);
@@ -438,6 +448,14 @@ int alexa_volume_get_step(void)
 	return vol_step;
 }
 
+void alexa_volume_set_mute()
+{
+	pthread_mutex_lock(&ev_mutex);
+	current_vol_step = -1;
+	pthread_cond_signal(&ev_pending);
+	ev_unprocessed = 1;
+	pthread_mutex_unlock(&ev_mutex);
+}
 
 int *event_read_thread(void * arg)
 {

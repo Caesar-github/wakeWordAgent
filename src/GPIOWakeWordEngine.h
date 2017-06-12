@@ -18,7 +18,7 @@ public:
   ~GPIOWakeWordEngine() = default;
   void pause();
   void resume();
-  void setVolume(); 
+  void setVolume(int vol); 
   void setInitState(); 
   void startAmazonRecord();
   void stopAmazonRecord();

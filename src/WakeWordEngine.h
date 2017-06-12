@@ -30,7 +30,7 @@ public:
   // When paused, the microphone is released.
   virtual void pause() = 0;
   virtual void resume() = 0;
-  virtual void setVolume() = 0; 
+  virtual void setVolume(int vol) = 0 ; 
   virtual void setInitState() = 0;
   virtual void startAmazonRecord() = 0;
   virtual void stopAmazonRecord() = 0;

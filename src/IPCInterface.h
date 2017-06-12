@@ -38,8 +38,20 @@ public:
     START_AMAZON_RECORD       = 9,  // OUTGOING : START_AMAZON_RECORD
     STOP_AMAZON_RECORD        = 10,  // OUTGOING : STOP_AMAZON_RECORD
     START_AMAZON_PLAY         = 11,  // OUTGOING : START_AMAZON_PLAY
-    SETVOLUME                 = 12,  // OUTGOING : setvolume
-    UNKNOWN                   = 13   // n/a : for error & default cases
+    AMAZON_SETVOLUME_0        = 12,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_1        = 13,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_2        = 14,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_3        = 15,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_4        = 16,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_5        = 17,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_6        = 18,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_7        = 19,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_8        = 20,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_9        = 21,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_10       = 22,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_11       = 23,  // OUTGOING : setvolume
+    AMAZON_SETVOLUME_12       = 24,  // OUTGOING : setvolume
+    UNKNOWN                   = 25   // n/a : for error & default cases
   };
 
   virtual ~IPCInterface() = default;

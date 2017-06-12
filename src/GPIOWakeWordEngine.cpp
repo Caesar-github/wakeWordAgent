@@ -37,8 +37,12 @@ void GPIOWakeWordEngine::resume() {
   log(Logger::DEBUG, "GPIOWakeWordEngine: handling resume");
 }
 
-void GPIOWakeWordEngine::setVolume() {
-  log(Logger::INFO, "GPIOWakeWordEngine: set volume");
+void GPIOWakeWordEngine::setVolume(int vol) {
+  log(Logger::INFO, "GPIOWakeWordEngine: set volume: " + std::to_string(vol));
+  if(vol == 0)
+      alexa_volume_set_mute();
+  else
+      alexa_volume_set_step(vol);
 }
 
 void GPIOWakeWordEngine::setInitState() {
