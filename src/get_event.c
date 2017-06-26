@@ -419,7 +419,7 @@ static int find_event_dev(int event_type)
 void alexa_volume_set_step(int vol_step)
 {
 	pthread_mutex_lock(&ev_mutex);
-	current_vol_step = vol_step;
+	current_vol_step = vol_step - 1;//volume_controls from 0 ~ 11.
 	printf("set volume step to %d, set alexa vol to %d\n",current_vol_step, volume_controls[current_vol_step].alex_vol);
 	is_volume_changed = 1;
     pthread_cond_signal(&ev_pending);
