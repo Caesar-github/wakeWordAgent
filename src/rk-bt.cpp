@@ -102,17 +102,7 @@ void rkBlueTooth::btPlAudioCtl(int state,char *btName) {
     } else {
         system("pulseaudio -k");
         system("hciconfig hci0 down");
-        {//kill bt-auto-connect
-            cmd_fp = popen("pidof bt-auto-connect","r");
-            fgets(buf,sizeof(buf),cmd_fp);
-            pclose(cmd_fp);
-            fprintf(stderr,"bt-auto-connect restart pid:%s\n",buf);
-            int pid = atoi(buf);
-            if(pid > 0) {
-                sprintf(buf,"kill %d",pid);
-                system(buf);
-            }
-        }
+        system("busybox killall bt-auto-connect");
     }
 }
 rkBlueTooth::~rkBlueTooth(){
