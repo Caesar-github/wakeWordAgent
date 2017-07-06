@@ -69,6 +69,11 @@ void GPIOWakeWordEngine::setAuthorizedState(bool state) {
   log(Logger::INFO, "GPIOWakeWordEngine:setAuthorizedState");
   if(!state && infoled && kittAiReady && gpioReady) {
       infoled->led_open(MODE_WIFI_ERR,0); 
+  } else {
+      log(Logger::INFO, "GPIOWakeWordEngine:setAuthorizedState booted");
+      infoled->led_open(MODE_BOOTED,0);
+      sleep(2);
+      infoled->led_open(MODE_OFF,0);
   }
 }
 
