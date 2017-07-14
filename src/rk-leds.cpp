@@ -490,12 +490,14 @@ void InfoLed::mainloop() {
 			case State::VP_WAKEUP:
 				log(Logger::DEBUG,"-----mode VP_WAKEUP-------");
 				leds_multi_set_breath(LED_MULTI_PURE_COLOR_WHITE ,LED_MULTI_PURE_COLOR_BLACK, 200, 8);
+				m_ledState = State::VP_WAKEUP;
 				setState(State::IDLE);
 				break;
 			case State::VP_PROCESS:
 				log(Logger::DEBUG,"-----mode VP_PROCESS-------");
 				bitmap = 0x333;
 				leds_multi_set_scroll(bitmap,LED_MULTI_PURE_COLOR_WHITE,LED_MULTI_PURE_COLOR_BLUE, 3, 50);
+				m_ledState = State::VP_PROCESS;
 				setState(State::IDLE);
 				break;
 			case State::ADJUST_VOLUME:
@@ -515,6 +517,7 @@ void InfoLed::mainloop() {
 			case State::OFF:
 				fprintf(stderr,"-----mode OFF-------\n");
 				leds_multi_all_off();
+				m_ledState = State::OFF;
 				setState(State::IDLE);
 				break;
 			case State::IDLE:
