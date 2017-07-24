@@ -86,6 +86,18 @@ void rkBlueTooth::btPlAudioCtl(int state,char *btName) {
     FILE *cmd_fp;
     if(state) {
         DLNAControl(false,btName);
+
+        cmd_fp = popen("pidof bluetoothd","r");
+        fgets(buf,sizeof(buf),cmd_fp);
+        pclose(cmd_fp);
+        int pid = atoi(buf);
+        if(pid > 0) {
+
+        } else {
+            fprintf(stderr,"bluetoothd restart\n");
+            system("/usr/libexec/bluetooth/bluetoothd --compat -n &");
+        }
+
         system("hciconfig hci0 up");
         char bt_buf[128];
         char btcmd[128];
